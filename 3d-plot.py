@@ -5,13 +5,24 @@ from dash import Dash, dcc, html
 df = pd.read_csv('data.csv', sep=';')
 
 fig = px.line_3d(df, x="x", y="z", z="y")
-fig.update_layout(
-    margin=dict(l=0, r=0, b=0, t=0),
-    scene=dict(
-        bgcolor='rgba(0,0,0,0)'
-    ),
-    paper_bgcolor='white'
+
+# Данные для точек
+df_points = pd.DataFrame({
+    'x': [0, 1600, 5600, 4000, 8000, 6400,4000],
+    'z': [0, 0,0,0,0,0, 0],
+    'y': [0, 8000, 9600, 6400, 2000, 5600, 4000]
+})
+
+# Добавление точек к графику
+fig.add_scatter3d(
+    x=df_points['x'],
+    y=df_points['y'],
+    z=df_points['z'],
+    mode='markers',
+    marker=dict(size=5, color='red'),
+    name='Points'
 )
+
 
 app = Dash()
 
