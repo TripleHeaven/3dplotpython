@@ -20,7 +20,7 @@ fig.add_scatter3d(
     z=df_points['z'],
     mode='markers',
     marker=dict(size=5, color='red'),
-    name='Points'
+    showlegend=False
 )
 
 
